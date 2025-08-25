@@ -2,6 +2,7 @@ package com.ilouse.controller;
 
 import com.ilouse.entity.User;
 import com.ilouse.service.user.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable Integer id){
-        return userService.findById(id);
+    public ResponseEntity<User> findById(@PathVariable Integer id){
+        return ResponseEntity.ok(userService.findById(id));
     }
 
     @PostMapping
