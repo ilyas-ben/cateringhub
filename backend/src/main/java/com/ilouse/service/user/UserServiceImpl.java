@@ -1,11 +1,11 @@
 package com.ilouse.service.user;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.ilouse.entity.User;
 import com.ilouse.repo.UserRepo;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,5 +34,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Integer id) {
         userRepo.deleteById(id);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        User user = this.findByUsername(username);
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .build();
     }
 }
