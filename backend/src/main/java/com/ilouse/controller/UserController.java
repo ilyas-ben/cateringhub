@@ -1,11 +1,18 @@
 package com.ilouse.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.ilouse.entity.User;
 import com.ilouse.service.user.UserService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -18,22 +25,23 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> findAll(){
-        return userService.findAll();
+    public ResponseEntity<List<User>> findAll() {
+        return ResponseEntity.ok(userService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable Integer id){
+    public ResponseEntity<User> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(userService.findById(id));
     }
 
     @PostMapping
-    public List<User> save(@RequestBody List<User> users){
-        return  userService.saveAll(users);
+    public ResponseEntity<List<User>> save(@RequestBody List<User> users) {
+        return ResponseEntity.ok(userService.saveAll(users));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Integer id){
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         userService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

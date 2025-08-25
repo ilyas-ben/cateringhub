@@ -1,19 +1,20 @@
 package com.ilouse.service.user;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.Mockito;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import com.ilouse.entity.User;
 import com.ilouse.repo.UserRepo;
-import com.ilouse.service.user.UserServiceImpl;
 
-public class UserServiceTest {
+class UserServiceTest {
 	@Mock
 	private UserRepo userRepo;
 

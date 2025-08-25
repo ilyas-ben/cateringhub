@@ -1,10 +1,11 @@
 package com.ilouse.service.user;
 
-import com.ilouse.entity.User;
-import com.ilouse.repo.UserRepo;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.ilouse.entity.User;
+import com.ilouse.repo.UserRepo;
 
 @Service
 public class UserServiceImpl implements UserService {

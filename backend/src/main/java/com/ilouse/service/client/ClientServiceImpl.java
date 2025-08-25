@@ -1,10 +1,11 @@
 package com.ilouse.service.client;
 
-import com.ilouse.entity.Client;
-import com.ilouse.repo.ClientRepo;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.ilouse.entity.Client;
+import com.ilouse.repo.ClientRepo;
 
 @Service
 public class ClientServiceImpl implements ClientService {

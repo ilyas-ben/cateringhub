@@ -1,19 +1,20 @@
 package com.ilouse.service.client;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.Mockito;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import com.ilouse.entity.Client;
 import com.ilouse.repo.ClientRepo;
-import com.ilouse.service.client.ClientServiceImpl;
 
-public class ClientServiceTest {
+class ClientServiceTest {
 	@Mock
 	private ClientRepo clientRepo;
 
@@ -62,4 +63,3 @@ public class ClientServiceTest {
 		Mockito.verify(clientRepo).deleteById(1);
 	}
 }
-
