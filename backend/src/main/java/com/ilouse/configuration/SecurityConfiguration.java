@@ -1,8 +1,8 @@
 package com.ilouse.configuration;
 
 import com.ilouse.configuration.jwt.JwtFilter;
-import com.ilouse.service.user.UserService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,14 +21,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@org.springframework.context.annotation.Configuration
+@Configuration
 @EnableWebSecurity
-public class Configuration {
+public class SecurityConfiguration {
 
-    private final UserService userService;
+    private final JwtFilter jwtFilter;
 
-    public Configuration(UserService userService) {
-        this.userService = userService;
+    public SecurityConfiguration(JwtFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
     }
 
     @Bean
@@ -36,7 +36,7 @@ public class Configuration {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/users").permitAll()
+                    auth.requestMatchers("/signin").permitAll()
                             .anyRequest().authenticated();
                 })
                 .formLogin(Customizer.withDefaults())
@@ -44,13 +44,8 @@ public class Configuration {
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                 )
-                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return this.userService;
     }
 
     @Bean
@@ -69,11 +64,6 @@ public class Configuration {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
         return builder.getAuthenticationManager();
-    }
-
-    @Bean
-    public JwtFilter jwtFilter(){
-        return new JwtFilter();
     }
 
     @Bean

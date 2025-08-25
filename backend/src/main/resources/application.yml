@@ -1,6 +1,9 @@
 spring:
   application:
     name: Cateringhub
+  app:
+    jwtSecret: "mysupersecretkeythatshouldbeatleast32characterslong"
+    jwtExpirationMs: 3600000   # 1 hour in milliseconds
 
   datasource:
     url: jdbc:postgresql://localhost:5432/cateringhub
@@ -20,3 +23,12 @@ spring:
 logging:
   level:
     org.springframework.web: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,httptrace,beans
+  endpoint:
+    health:
+      show-details: always
