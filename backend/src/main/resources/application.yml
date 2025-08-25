@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Cateringhub
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cateringhub
+    username: admin
+    password: pass1
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+logging:
+  level:
+    org.springframework.web: DEBUG
