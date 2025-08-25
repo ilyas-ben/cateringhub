@@ -10,4 +10,5 @@ public interface UserService extends UserDetailsService {
     List<User> saveAll(List<User> users);
     User findById(Integer id);
     void deleteById(Integer id);
+    User findByUsername(String username);
 }
