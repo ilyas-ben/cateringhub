@@ -1,0 +1,30 @@
+<div class="header-wrapper">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="menuToggle.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="app-title">Catering Hub</span>
+    <span class="example-spacer"></span>
+
+    <!-- Switch Lang -->
+    <button mat-button [matMenuTriggerFor]="langMenu">
+      <mat-icon>language</mat-icon>
+      <span>{{ "app.header.language" | translate }}</span>
+    </button>
+    <mat-menu #langMenu="matMenu">
+      <button mat-menu-item (click)="switchLang('en')">English</button>
+      <button mat-menu-item (click)="switchLang('fr')">Français</button>
+    </mat-menu>
+
+    <!-- Profile -->
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+      <span>{{ "app.header.signin" | translate }}</span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>{{ "app.header.profile" | translate }}</button>
+      <button mat-menu-item>{{ "app.header.logout" | translate }}</button>
+    </mat-menu>
+  </mat-toolbar>
+</div>

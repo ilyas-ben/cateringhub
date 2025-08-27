@@ -1,0 +1,15 @@
+{
+  "app": {
+    "header": {
+      "profile": "Profil",
+      "logout": "Déconnexion",
+      "language": "FR",
+      "signin": "Se connecter"
+    },
+    "sidebar": {
+      "users": "Utilisateurs",
+      "orders": "Commandes",
+      "client": "Client"
+    }
+  }
+}
