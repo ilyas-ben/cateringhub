@@ -1,0 +1,15 @@
+{
+  "app": {
+    "header": {
+      "profile": "Profile",
+      "logout": "Logout",
+      "language" : "EN",
+      "signin" : "Sign In"
+    },
+    "sidebar": {
+      "users": "Users",
+      "orders": "Orders",
+      "client": "Client"
+    }
+  }
+}
