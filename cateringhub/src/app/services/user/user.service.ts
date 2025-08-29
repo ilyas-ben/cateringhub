@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoginRequest } from '../../models/login-request.model';
 import { User } from '../../models/user.model';
@@ -9,9 +9,14 @@ import { ApiService } from '../api/api.service';
   providedIn: 'root',
 })
 export class UserService {
-  private readonly _endpoint = 'users';
+  public isLoggedIn$: Observable<boolean>;
 
-  constructor(private readonly _apiService: ApiService) {}
+  private readonly _endpoint = 'users';
+  private readonly _loggedIn = new BehaviorSubject<boolean>(false);
+
+  constructor(private readonly _apiService: ApiService) {
+    this.isLoggedIn$ = this._loggedIn.asObservable();
+  }
 
   findAll(): Observable<User[]> {
     return this._apiService.get<User[]>(this._endpoint);
@@ -32,17 +37,15 @@ export class UserService {
   login(
     loginRequest: LoginRequest
   ): Observable<{ token: string; username?: string }> {
+    this.logout();
     return this._apiService
-      .post<{ token: string; username?: string }>(
-        `${this._endpoint}/signin`,
-        loginRequest
-      )
+      .post<{ token: string; username?: string }>(`signin`, loginRequest)
       .pipe(
         tap((response) => {
           response?.token && localStorage.setItem('jwtToken', response.token);
-
           response?.username &&
             localStorage.setItem('username', response.username);
+          this._loggedIn.next(true);
         })
       );
   }
@@ -55,5 +58,6 @@ export class UserService {
   logout(): void {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('username');
+    this._loggedIn.next(false);
   }
 }

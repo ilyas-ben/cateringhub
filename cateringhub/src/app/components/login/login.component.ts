@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../services/user/user.service';
-import { LoginRequest } from '../../models/login-request.model';
 import { Router } from '@angular/router';
+import { LoginRequest } from '../../models/login-request.model';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +15,10 @@ export class LoginComponent implements OnInit {
   public loginRequest!: LoginRequest;
   public hide: boolean = true;
 
-  private readonly _router!: Router;
-
-  constructor(private readonly _userService: UserService) {}
+  constructor(
+    private readonly _userService: UserService,
+    private readonly _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({

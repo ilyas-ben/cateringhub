@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,10 @@ export class HeaderComponent {
 
   @Output() menuToggle = new EventEmitter<void>();
 
-  constructor(private readonly _translate: TranslateService) {
+  constructor(
+    private readonly _translate: TranslateService,
+    private readonly _userService: UserService
+  ) {
     this.isLoggedIn = !!localStorage.getItem('jwtToken');
     this.username = localStorage.getItem('username') || '';
   }
@@ -23,6 +27,8 @@ export class HeaderComponent {
   }
 
   logout() {
-    throw new Error('Method not implemented.');
+    this._userService.logout();
+    this.isLoggedIn = false;
+    this.username = '';
   }
 }

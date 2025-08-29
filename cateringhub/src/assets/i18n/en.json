@@ -3,13 +3,24 @@
     "header": {
       "profile": "Profile",
       "logout": "Logout",
-      "language" : "EN",
-      "signin" : "Sign In"
+      "language": "EN",
+      "signin": "Sign In"
     },
     "sidebar": {
       "users": "Users",
       "orders": "Orders",
       "client": "Client"
+    },
+    "login": {
+      "title": "Please sign in",
+      "username": "Username",
+      "password": "Password",
+      "button": "Login",
+      "errors": {
+        "requiredUsername": "Username is required",
+        "requiredPassword": "Password is required",
+        "invalidCredentials": "Invalid username or password"
+      }
     }
   }
 }
