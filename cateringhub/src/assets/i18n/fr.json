@@ -10,6 +10,17 @@
       "users": "Utilisateurs",
       "orders": "Commandes",
       "client": "Client"
+    },
+    "login": {
+      "title": "Veuillez vous connecter",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "button": "Connexion",
+      "errors": {
+        "requiredUsername": "Le nom d'utilisateur est requis",
+        "requiredPassword": "Le mot de passe est requis",
+        "invalidCredentials": "Nom d'utilisateur ou mot de passe invalide"
+      }
     }
   }
 }

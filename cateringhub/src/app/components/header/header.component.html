@@ -1,6 +1,6 @@
 <div class="header-wrapper">
-  <mat-toolbar color="primary">
-    <button mat-icon-button (click)="menuToggle.emit()">
+  <mat-toolbar color="accent" >
+    <button mat-icon-button (click)="menuToggle.emit()" *ngIf="isLoggedIn">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -18,13 +18,19 @@
     </mat-menu>
 
     <!-- Profile -->
-    <button mat-button [matMenuTriggerFor]="menu">
-      <mat-icon>account_circle</mat-icon>
-      <span>{{ "app.header.signin" | translate }}</span>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>{{ "app.header.profile" | translate }}</button>
-      <button mat-menu-item>{{ "app.header.logout" | translate }}</button>
-    </mat-menu>
+    <ng-container *ngIf="isLoggedIn">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+        <span>{{ username }}</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/profile">
+          {{ "app.header.profile" | translate }}
+        </button>
+        <button mat-menu-item (click)="logout()">
+          {{ "app.header.logout" | translate }}
+        </button>
+      </mat-menu>
+    </ng-container>
   </mat-toolbar>
 </div>

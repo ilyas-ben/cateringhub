@@ -39,7 +39,6 @@ public class SecurityConfiguration {
                     auth.requestMatchers("/signin").permitAll()
                             .anyRequest().authenticated();
                 })
-                .formLogin(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
