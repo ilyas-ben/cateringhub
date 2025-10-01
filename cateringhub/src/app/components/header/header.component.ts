@@ -9,7 +9,7 @@ import { UserService } from '../../services/user/user.service';
   standalone: false,
 })
 export class HeaderComponent {
-  public isLoggedIn: boolean;
+  public isLoggedIn: boolean = false;
   public username!: string;
 
   @Output() menuToggle = new EventEmitter<void>();
@@ -18,8 +18,10 @@ export class HeaderComponent {
     private readonly _translate: TranslateService,
     private readonly _userService: UserService
   ) {
-    this.isLoggedIn = !!localStorage.getItem('jwtToken');
-    this.username = localStorage.getItem('username') || '';
+    this._userService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+      this.username = localStorage.getItem('username') || '';
+    });
   }
 
   switchLang(lang: string) {

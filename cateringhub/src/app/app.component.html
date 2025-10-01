@@ -3,7 +3,7 @@
     <mat-nav-list>
       <mat-list-item>
         <mat-icon matListIcon>person</mat-icon>
-        <span matLine>Users</span>
+        <span matLine (click)="navigateToUsers()">Users</span>
       </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>receipt_long</mat-icon>
@@ -13,12 +13,13 @@
         <mat-icon matListIcon>business</mat-icon>
         <span matLine>Client</span>
       </mat-list-item>
+    
     </mat-nav-list>
   </mat-drawer>
 
   <mat-drawer-content class="main-content">
     <app-header (menuToggle)="drawer.toggle()"></app-header>
-    <div class="main-content">
+    <div class="container">
       <router-outlet></router-outlet>
     </div>
   </mat-drawer-content>

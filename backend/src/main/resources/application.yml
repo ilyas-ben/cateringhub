@@ -3,7 +3,7 @@ spring:
     name: Cateringhub
   app:
     jwtSecret: "mysupersecretkeythatshouldbeatleast32characterslong"
-    jwtExpirationMs: 1000   # 1 hour in milliseconds
+    jwtExpirationMs: 3600000   # 1 hour in milliseconds
 
   datasource:
     url: jdbc:postgresql://localhost:5434/cateringhub
