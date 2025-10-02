@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { User } from '../../models/user.model';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { UserAddFormComponent } from './user-add-form/user-add-form.component';
 
 @Component({
   selector: 'app-user',
@@ -32,10 +33,10 @@ export class UserComponent implements OnInit {
   deleteUser(user: User) {
     const dialogRef = this._dialog.open(ConfirmDialogComponent, {
       data: {
-        title: 'Are you sure?',
-        message: `Do you really want to delete user ${user.username}?`,
-        confirmText: 'Yes',
-        cancelText: 'No',
+        title: 'app.users.deleteDialog.title',
+        message: `app.users.deleteDialog.message ${user.username}?`,
+        confirmText: 'app.users.deleteDialog.yes',
+        cancelText: 'app.users.deleteDialog.no',
       },
     });
 
@@ -48,5 +49,10 @@ export class UserComponent implements OnInit {
   }
   editUser(user: User) {
     throw new Error('Method not implemented.');
+  }
+
+  openUserAddForm() {
+    this._dialog.open(UserAddFormComponent, {});
+  
   }
 }

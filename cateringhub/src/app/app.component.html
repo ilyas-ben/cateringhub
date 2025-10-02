@@ -3,15 +3,15 @@
     <mat-nav-list>
       <mat-list-item>
         <mat-icon matListIcon>person</mat-icon>
-        <span matLine (click)="navigateToUsers()">Users</span>
+        <span matLine (click)="navigateToUsers()">{{'app.drawer.users' | translate }}</span>
       </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>receipt_long</mat-icon>
-        <span matLine>Orders</span>
+        <span matLine>{{'app.drawer.orders' | translate }}</span>
       </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>business</mat-icon>
-        <span matLine>Client</span>
+        <span matLine>{{'app.drawer.clients' | translate }}</span>
       </mat-list-item>
     
     </mat-nav-list>

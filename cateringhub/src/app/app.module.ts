@@ -23,9 +23,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { UserAddFormComponent } from './components/user/user-add-form/user-add-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, UserComponent, ConfirmDialogComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, UserComponent, ConfirmDialogComponent, UserAddFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
