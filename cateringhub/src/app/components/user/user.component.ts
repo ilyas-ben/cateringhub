@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, Signal } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -13,7 +13,7 @@ import { UserAddFormComponent } from './user-add-form/user-add-form.component';
   standalone: false,
 })
 export class UserComponent implements OnInit {
-  public users: User[] = [];
+  public users!: Signal<User[]>;
 
   constructor(
     private readonly _userService: UserService,
@@ -26,7 +26,29 @@ export class UserComponent implements OnInit {
 
   getUsers(): void {
     this._userService.findAll().subscribe((users) => {
-      this.users = users;
+      this.users = signal<User[]>(users);
+    });
+  }
+
+  openUserAddForm() {
+    const dialogRef = this._dialog.open(UserAddFormComponent, {});
+
+    dialogRef.afterClosed().subscribe({
+      next: (useradded: User) => {
+        this.users = signal<User[]>([...this.users(), useradded]);
+      },
+    });
+  }
+
+  editUser(user: User) {
+    const dialogRef = this._dialog.open(UserAddFormComponent, {
+      data: user,
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (useradded: User) => {
+        this.getUsers();
+      },
     });
   }
 
@@ -46,13 +68,5 @@ export class UserComponent implements OnInit {
       });
       dialogRef.close();
     };
-  }
-  editUser(user: User) {
-    throw new Error('Method not implemented.');
-  }
-
-  openUserAddForm() {
-    this._dialog.open(UserAddFormComponent, {});
-  
   }
 }
