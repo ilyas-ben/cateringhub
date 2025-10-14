@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core(); // nécessaire pour les variables de base
+
+// Appliquer le thème Azure/Blue préinstallé
+@import '@angular/material/prebuilt-themes/azure-blue.css';
+

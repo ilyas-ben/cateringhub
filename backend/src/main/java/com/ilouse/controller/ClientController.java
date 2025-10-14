@@ -1,10 +1,18 @@
 package com.ilouse.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.ilouse.entity.Client;
 import com.ilouse.service.client.ClientService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/clients")
@@ -17,22 +25,23 @@ public class ClientController {
     }
 
     @GetMapping
-    public List<Client> findAll(){
-        return clientService.findAll();
+    public ResponseEntity<List<Client>> findAll() {
+        return ResponseEntity.ok(clientService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Client findById(@PathVariable Integer id){
-        return clientService.findById(id);
+    public ResponseEntity<Client> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(clientService.findById(id));
     }
 
     @PostMapping
-    public List<Client> save(@RequestBody List<Client> clients){
-        return  clientService.saveAll(clients);
+    public ResponseEntity<List<Client>> save(@RequestBody List<Client> clients) {
+        return ResponseEntity.ok(clientService.saveAll(clients));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Integer id){
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         clientService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

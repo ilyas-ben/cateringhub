@@ -1,10 +1,18 @@
 package com.ilouse.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.ilouse.entity.Order;
 import com.ilouse.service.order.OrderService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
@@ -17,22 +25,23 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<Order> findAll(){
-        return orderService.findAll();
+    public ResponseEntity<List<Order>> findAll() {
+        return ResponseEntity.ok(orderService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Order findById(@PathVariable Integer id){
-        return orderService.findById(id);
+    public ResponseEntity<Order> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(orderService.findById(id));
     }
 
     @PostMapping
-    public List<Order> save(@RequestBody List<Order> orders){
-        return  orderService.saveAll(orders);
+    public ResponseEntity<List<Order>> save(@RequestBody List<Order> orders) {
+        return ResponseEntity.ok(orderService.saveAll(orders));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Integer id){
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         orderService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
